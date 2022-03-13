@@ -47,4 +47,7 @@ Contracts:
 
 ---
 
-Replit: https://replit.com/@yhuard/domain-starter-project
+Replit:
+
+- project: https://replit.com/@yhuard/domain-starter-project
+- demo: https://domain-starter-project.yhuard.repl.co/
