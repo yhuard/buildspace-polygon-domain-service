@@ -1,4 +1,11 @@
 require("@nomiclabs/hardhat-waffle");
+require("dotenv").config();
+
+const privateKey = process.env.PRIVATE_KEY;
+if (!privateKey) throw new Error("Missing PRIVATE_KEY variable");
+
+const apiUrl = process.env.API_URL;
+if (!apiUrl) throw new Error("Missing API_URL variable");
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -18,4 +25,10 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  */
 module.exports = {
   solidity: "0.8.10",
+  networks: {
+    mumbai: {
+      url: apiUrl,
+      accounts: [privateKey],
+    },
+  },
 };

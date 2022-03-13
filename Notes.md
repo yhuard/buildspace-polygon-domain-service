@@ -32,3 +32,16 @@ Here we check if the “value” of the “msg” sent is above a certain amount
 Since the MATIC token has 18 decimals, we need to put \* 10\*\*18 at the end of the prices.
 
 ---
+
+Polygon faucet: https://faucet.polygon.technology/
+Explorer: https://mumbai.polygonscan.com/
+MM: https://mumbai.polygonscan.com/address/0x896629eAF8dDDFb01FF7A9022aBB834524164597
+OpenSea: https://testnets.opensea.io/collection/buidl-name-service-jukwwtogvt
+
+(someone already used "Buidl Name Service")
+
+---
+
+Contracts:
+
+- https://mumbai.polygonscan.com/address/0x53fBB088BD2E2FA8993e23C33e3fA6c6D0dC69dA
