@@ -1,33 +1,38 @@
 const main = async () => {
   const [owner, randomPerson] = await hre.ethers.getSigners();
   const domainContractFactory = await hre.ethers.getContractFactory("Domains");
-  const domainContract = await domainContractFactory.deploy();
+  const domainContract = await domainContractFactory.deploy("automated");
   await domainContract.deployed();
   console.log("Contract deployed to:", domainContract.address);
   console.log("Contract deployed by:", owner.address);
 
-  let txn = await domainContract.register("doom");
+  let txn = await domainContract.register("life", {
+    value: hre.ethers.utils.parseEther("0.3"),
+  });
   await txn.wait();
 
-  const domainOwner = await domainContract.getAddress("doom");
-  console.log("Owner of domain:", domainOwner);
+  const address = await domainContract.getAddress("life");
+  console.log("Owner of domain life:", address);
 
-  txn = await domainContract.setRecord("doom", "my first record");
+  const balance = await hre.ethers.provider.getBalance(domainContract.address);
+  console.log("Contract balance:", hre.ethers.utils.formatEther(balance));
+
+  txn = await domainContract.setRecord("life", "my first record");
   await txn.wait();
 
-  const domainRecord = await domainContract.getRecord("doom");
-  console.log("Record of doom domain:", domainRecord);
+  const domainRecord = await domainContract.getRecord("life");
+  console.log("Record of life.automated domain:", domainRecord);
 
-  txn = await domainContract.setEmailAddress("doom", "doom@doom.doom");
+  txn = await domainContract.setEmailAddress("life", "life@life.life");
   await txn.wait();
 
-  const domainEmail = await domainContract.getEmailAddress("doom");
-  console.log("Email of doom domain:", domainEmail);
+  const domainEmail = await domainContract.getEmailAddress("life");
+  console.log("Email of life.automated domain:", domainEmail);
 
   // Trying to set a record that doesn't belong to me!
   txn = await domainContract
     .connect(randomPerson)
-    .setRecord("doom", "Haha my domain now!");
+    .setRecord("life", "Haha my domain now!");
   await txn.wait();
 };
 

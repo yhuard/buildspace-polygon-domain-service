@@ -10,3 +10,25 @@ function getAddress(string calldata name) public view returns (address) {
 - `public` - this is a visibility modifier. We want our function to be accessible by everyone, including other contracts.
 - `view` - this just means that the function is only viewing data on the contract, not modifying it.
 - `returns (string)` - the contract returns a string variable when called.
+
+---
+
+```sol
+function price(string calldata name) public pure returns (uint256) {
+```
+
+Looking closer at the price function, we see that it is a pure function - meaning it doesn’t read or modify contract state. It’s just a helper. Could we do it on the front-end using JavaScript etc.? Yeah, but it wouldn’t be as secure! Here, we calculate final price on-chain.
+
+---
+
+```sol
+require(msg.value >= _price, "Not enough Matic paid");
+```
+
+Here we check if the “value” of the “msg” sent is above a certain amount. “Value” is the amount of Matic sent and “msg” is the transaction.
+
+---
+
+Since the MATIC token has 18 decimals, we need to put \* 10\*\*18 at the end of the prices.
+
+---
