@@ -1,6 +1,6 @@
 const main = async () => {
   const domainContractFactory = await hre.ethers.getContractFactory("Domains");
-  const domainContract = await domainContractFactory.deploy("buidl");
+  const domainContract = await domainContractFactory.deploy("buidlers");
   await domainContract.deployed();
 
   console.log("Contract deployed to:", domainContract.address);
@@ -9,11 +9,11 @@ const main = async () => {
     value: hre.ethers.utils.parseEther("0.1"),
   });
   await txn.wait();
-  console.log("Minted domain yannick.buidl");
+  console.log("Minted domain yannick.buidlers");
 
   txn = await domainContract.setRecord("yannick", "Am I a buidler or not??");
   await txn.wait();
-  console.log("Set record for yannick.buidl");
+  console.log("Set record for yannick.buidlers");
 
   const address = await domainContract.getAddress("yannick");
   console.log("Owner of domain yannick:", address);

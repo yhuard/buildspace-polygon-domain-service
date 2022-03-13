@@ -36,12 +36,15 @@ Since the MATIC token has 18 decimals, we need to put \* 10\*\*18 at the end of 
 Polygon faucet: https://faucet.polygon.technology/
 Explorer: https://mumbai.polygonscan.com/
 MM: https://mumbai.polygonscan.com/address/0x896629eAF8dDDFb01FF7A9022aBB834524164597
-OpenSea: https://testnets.opensea.io/collection/buidl-name-service-jukwwtogvt
-
-(someone already used "Buidl Name Service")
+OpenSea: https://testnets.opensea.io
 
 ---
 
 Contracts:
 
-- https://mumbai.polygonscan.com/address/0x53fBB088BD2E2FA8993e23C33e3fA6c6D0dC69dA
+- https://mumbai.polygonscan.com/address/0x53fBB088BD2E2FA8993e23C33e3fA6c6D0dC69dA (buidl name service) - https://testnets.opensea.io/collection/buidl-name-service-jukwwtogvt
+- https://mumbai.polygonscan.com/address/0x85075801fCE359F1d5283F70184Dd5F4804d0308 (buidlers name service) - https://testnets.opensea.io/collection/buidlers-name-service
+
+---
+
+Replit: https://replit.com/@yhuard/domain-starter-project

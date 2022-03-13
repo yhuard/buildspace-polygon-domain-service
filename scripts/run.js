@@ -1,7 +1,7 @@
 const main = async () => {
   const [owner, randomPerson] = await hre.ethers.getSigners();
   const domainContractFactory = await hre.ethers.getContractFactory("Domains");
-  const domainContract = await domainContractFactory.deploy("buidl");
+  const domainContract = await domainContractFactory.deploy("buidlers");
   await domainContract.deployed();
   console.log("Contract deployed to:", domainContract.address);
   console.log("Contract deployed by:", owner.address);
@@ -21,7 +21,7 @@ const main = async () => {
   await txn.wait();
 
   const domainRecord = await domainContract.getRecord("yannick");
-  console.log("Record of yannick.buidl domain:", domainRecord);
+  console.log("Record of yannick.buidlers domain:", domainRecord);
 
   txn = await domainContract.setEmailAddress(
     "yannick",
@@ -30,7 +30,7 @@ const main = async () => {
   await txn.wait();
 
   const domainEmail = await domainContract.getEmailAddress("yannick");
-  console.log("Email of yannick.buidl domain:", domainEmail);
+  console.log("Email of yannick.buidlers domain:", domainEmail);
 
   // Trying to set a record that doesn't belong to me!
   txn = await domainContract

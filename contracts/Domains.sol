@@ -31,7 +31,7 @@ contract Domains is ERC721URIStorage {
     // We make the contract "payable" by adding this to the constructor
     constructor(string memory _tld)
         payable
-        ERC721("Buidl Name Service", "BNS")
+        ERC721("Buidlers Name Service", "BNS")
     {
         tld = _tld;
         console.log("%s name service deployed", _tld);
@@ -82,7 +82,7 @@ contract Domains is ERC721URIStorage {
                     abi.encodePacked(
                         '{"name": "',
                         _name,
-                        '", "description": "A domain on the Buidl Name Service", "image": "data:image/svg+xml;base64,',
+                        '", "description": "A domain on the Buidlers Name Service", "image": "data:image/svg+xml;base64,',
                         Base64.encode(bytes(finalSvg)),
                         '","length":"',
                         strLen,
