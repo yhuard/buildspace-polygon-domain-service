@@ -30,6 +30,13 @@ contract Domains is ERC721URIStorage {
 
     mapping(string => string) public emails;
 
+    mapping(uint256 => string) public names;
+
+    // Custom errors
+    error Unauthorized();
+    error AlreadyRegistered();
+    error InvalidName(string name);
+
     // We make the contract "payable" by adding this to the constructor
     constructor(string memory _tld)
         payable
@@ -53,9 +60,14 @@ contract Domains is ERC721URIStorage {
         }
     }
 
+    function valid(string calldata name) public pure returns (bool) {
+        return StringUtils.strlen(name) >= 3 && StringUtils.strlen(name) <= 12;
+    }
+
     // A register function that adds their names to our mapping
     function register(string calldata name) public payable {
-        require(domains[name] == address(0));
+        if (domains[name] != address(0)) revert AlreadyRegistered();
+        if (!valid(name)) revert InvalidName(name);
 
         uint256 _price = price(name);
 
@@ -110,7 +122,7 @@ contract Domains is ERC721URIStorage {
         _safeMint(msg.sender, newRecordId);
         _setTokenURI(newRecordId, finalTokenUri);
         domains[name] = msg.sender;
-
+        names[newRecordId] = name;
         _tokenIds.increment();
         console.log("%s has registered a domain!", msg.sender);
     }
@@ -122,7 +134,7 @@ contract Domains is ERC721URIStorage {
 
     function setRecord(string calldata name, string calldata record) public {
         // Check that the owner is the transaction sender
-        require(domains[name] == msg.sender, "THOU SHALT NOT STEAL");
+        if (msg.sender != domains[name]) revert Unauthorized();
         console.log("%s has set a record for the  domain %s", msg.sender, name);
         records[name] = record;
     }
@@ -139,7 +151,7 @@ contract Domains is ERC721URIStorage {
         public
     {
         // Check that the owner is the transaction sender
-        require(domains[name] == msg.sender, "THOU SHALT NOT STEAL");
+        if (msg.sender != domains[name]) revert Unauthorized();
         console.log(
             "%s has set an email address for the  domain %s",
             msg.sender,
@@ -170,5 +182,16 @@ contract Domains is ERC721URIStorage {
 
         (bool success, ) = msg.sender.call{value: amount}("");
         require(success, "Failed to withdraw Matic");
+    }
+
+    function getAllNames() public view returns (string[] memory) {
+        console.log("Getting all names from contract");
+        string[] memory allNames = new string[](_tokenIds.current());
+        for (uint256 i = 0; i < _tokenIds.current(); i++) {
+            allNames[i] = names[i];
+            console.log("Name for token %d is %s", i, allNames[i]);
+        }
+
+        return allNames;
     }
 }
