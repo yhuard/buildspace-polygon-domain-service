@@ -11,6 +11,8 @@ import {Base64} from "./libraries/Base64.sol";
 import "hardhat/console.sol";
 
 contract Domains is ERC721URIStorage {
+    address payable public owner;
+
     // Magic given to us by OpenZeppelin to help us keep track of tokenIds.
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
@@ -33,6 +35,7 @@ contract Domains is ERC721URIStorage {
         payable
         ERC721("Buidlers Name Service", "BNS")
     {
+        owner = payable(msg.sender);
         tld = _tld;
         console.log("%s name service deployed", _tld);
     }
@@ -151,5 +154,21 @@ contract Domains is ERC721URIStorage {
         returns (string memory)
     {
         return emails[name];
+    }
+
+    modifier onlyOwner() {
+        require(isOwner());
+        _;
+    }
+
+    function isOwner() public view returns (bool) {
+        return msg.sender == owner;
+    }
+
+    function withdraw() public onlyOwner {
+        uint256 amount = address(this).balance;
+
+        (bool success, ) = msg.sender.call{value: amount}("");
+        require(success, "Failed to withdraw Matic");
     }
 }
