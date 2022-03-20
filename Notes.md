@@ -49,5 +49,5 @@ Contracts:
 
 Replit:
 
-- project: https://replit.com/@yhuard/domain-starter-project
-- demo: https://domain-starter-project.yhuard.repl.co/
+- project: https://replit.com/@yhuard/buildspace-polygon-domain-service
+- demo: https://buildspace-polygon-domain-service.yhuard.repl.co/
