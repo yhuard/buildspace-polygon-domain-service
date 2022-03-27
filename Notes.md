@@ -44,6 +44,7 @@ Contracts:
 
 - https://mumbai.polygonscan.com/address/0x53fBB088BD2E2FA8993e23C33e3fA6c6D0dC69dA (buidl name service) - https://testnets.opensea.io/collection/buidl-name-service-jukwwtogvt
 - https://mumbai.polygonscan.com/address/0x85075801fCE359F1d5283F70184Dd5F4804d0308 (buidlers name service) - https://testnets.opensea.io/collection/buidlers-name-service
+- https://mumbai.polygonscan.com/address/0xd324251E7c3017cE0e174CBfB77F5093CfDf4212 (buidlers name service v2) - https://testnets.opensea.io/collection/buidlers-name-service-v2
 
 ---
 
